@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email sagecom</title>
+
+  <style>
+  .container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .container p {
+    font-size: 2rem;
+  }
+
+  .gauge {
+    width: 100%;
+    max-width: 250px;
+    font-family: "Roboto", sans-serif;
+    font-size: 32px;
+    color: #004033;
+  }
+
+  .gauge__body {
+    width: 100%;
+    height: 0;
+    padding-bottom: 50%;
+    background: #b4c0be;
+    position: relative;
+    border-top-left-radius: 100% 200%;
+    border-top-right-radius: 100% 200%;
+    overflow: hidden;
+  }
+
+  .gauge__fill {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: inherit;
+    height: 100%;
+    transform-origin: center top;
+    transform: rotate(0.25turn);
+    transition: transform 0.2s ease-out;
+  }
+
+  .gauge__cover {
+    width: 75%;
+    height: 150%;
+    background: #ffffff;
+    border-radius: 50%;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    /* Text */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 25%;
+    box-sizing: border-box;
+  }
+  </style>
+
+</head>
+<body>
+  <div class="container">
+    <div class="gauge">
+      <div class="gauge__body">
+        <div class="gauge__fill"></div>
+        <div class="gauge__cover"></div>
+      </div>
+    </div>
+    <p>Mac available: <strong><%= options.value %></strong></p>
+  </div>
+</body>
+</html>
+
+<script>
+  const gaugeElement = document.querySelector(".gauge");
+
+    function setGaugeValue(gauge, value) {
+      var color = '#009578';
+
+      //#2ECC71 - green
+      //#F1C40F - yellow
+      //#E74C3C - red
+
+      if(value >= 15000 && value < 15001 && value > 10000)
+        color = '#F1C40F';
+      else if(value < 10001)
+        color = '#E74C3C';
+
+      gauge.querySelector(".gauge__fill").style.background = `${color}`;
+      gauge.querySelector(".gauge__fill").style.transform = `rotate(${(value/50000) / 2}turn)`;
+      gauge.querySelector(".gauge__cover").textContent = `${Math.round((value * 100)/ 50000)}%`;
+    }
+
+    setGaugeValue(gaugeElement, 20000);
+</script>
