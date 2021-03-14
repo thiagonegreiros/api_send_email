@@ -14,7 +14,7 @@ async function sendEmail(html, options) {
     },
   });
 
-  transporter
+  await transporter
     .sendMail({
       from: '"Cal-comp" noreply@cal-comp.com.br',
       to: `${options.to}`,
