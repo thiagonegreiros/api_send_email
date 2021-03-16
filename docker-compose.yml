@@ -9,8 +9,8 @@ services:
       - redis-network
     ports:
       - 3334:3334
-    volumes:
-      - .:/home/node/app
+    # volumes:
+    #   - .:/home/node/app
     tty: true
     depends_on: 
       - redis
