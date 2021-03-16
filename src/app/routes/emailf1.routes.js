@@ -3,7 +3,6 @@ const router = require("express-promise-router")();
 const path = require("path");
 const ejs = require("ejs");
 const bent = require("bent");
-const { json } = require("express");
 const getJSON = bent("json");
 
 router.post("/email_mac_sagemcom", async (req, res) => {
