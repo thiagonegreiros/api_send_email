@@ -1,5 +1,4 @@
 const router = require("express-promise-router")();
-const sendEmail = require("../lib/send_email");
 const path = require("path");
 const ejs = require("ejs");
 const bent = require("bent");

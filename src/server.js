@@ -1,10 +1,12 @@
-const express = require("express");
+import "dotenv/config";
+import express from "express";
+import BullBoard from "bull-board";
+import Queue from "./app/lib/Queue";
+
 const app = express();
+BullBoard.setQueues(Queue.queues.map((queue) => queue.bull));
 
-const dotenv = require("dotenv");
-dotenv.config();
-
-const port = process.env.PORT || 3333;
+app.use(express.json());
 
 //* API routes
 const index = require("./app/routes/index");
@@ -15,6 +17,9 @@ app.use(index);
 app.use("/", emailf1);
 app.use("/", emailf2);
 
+app.use("/admin/queues", BullBoard.UI);
+
+const port = process.env.PORT || 3334;
 app.listen(port, (req, res) => {
-  console.log(`Funfando na porta ${port}`);
+  console.log(`Running on port ${port}`);
 });
