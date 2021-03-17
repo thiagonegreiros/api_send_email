@@ -6,8 +6,11 @@ const bent = require("bent");
 const getJSON = bent("json");
 
 router.post("/email_mac_sagemcom", async (req, res) => {
+  // var mac_sagemcom = await getJSON(
+  //   "http://10.57.72.51/CCBR-CR_Workshop/webservice.php?funcao=CDQC311NONNET4T::getMacSagemcom&dados[s]=s"
+  // );
   var mac_sagemcom = await getJSON(
-    "http://10.57.72.51/CCBR-CR_Workshop/webservice.php?funcao=CDQC311NONNET4T::getMacSagemcom&dados[s]=s"
+    "http://10.58.64.185:8081/workshop/webservice.php?funcao=CDQCUUID::getMacUuidLenovo&dados[s]=s"
   );
 
   const options = {
