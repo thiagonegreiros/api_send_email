@@ -18,14 +18,14 @@ router.post("/email_mac_sagemcom", async (req, res) => {
       mac_sagemcom,
     },
     //? Email a serem enviados: sagemcom_warning@cal-comp.com.br, mis_bz,
-    to: `thiago_vieira@cal-comp.com.br`,
+    to: `thiago_vieira@cal-comp.com.br, mis_bz@cal-comp.com.br`,
     subject: `Sagemcom Mac avalible`,
     text: `Sagemcom Mac avalible`,
   };
 
   const pathFile = path.join(__dirname, "../templates/F1/mac_sagemcon.ejs");
   ejs.renderFile(pathFile, { options }, async (err, html) => {
-    await Queue.add("SagemcomMail", { html, options });
+    // await Queue.add("SagemcomMail", { html, options });
   });
 
   return res.json({ message: "Email enviado" });

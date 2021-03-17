@@ -2,12 +2,7 @@ import Mail from "../lib/Mail";
 
 export default {
   key: "SagemcomMail",
-  options: {
-    repeat: {
-      // cron: "0 0 12 1/1 *",
-      cron: "* * * * *",
-    },
-  },
+  options: { repeat: { cron: "* * * * *" } },
 
   async handle({ data }) {
     const { html, options } = data;
